@@ -23,11 +23,18 @@ export const GlobalStyle = createGlobalStyle`
       `'${theme.fonts.text.family.default}', ${theme.fonts.text.family.alternative}`};
     font-weight: ${({ theme }) => theme.fonts.text.weights.regular};
     font-size: ${({ theme }) => theme.fonts.text.sizes[3]};
+    line-height: ${({ theme }) => theme.fonts.text.heights.default};
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: ${({ theme }) =>
       `'${theme.fonts.header.family.default}', ${theme.fonts.header.family.alternative}`};
-    font-weight: ${({ theme }) => theme.fonts.header.weights.bold};
+    font-weight: ${({ theme }) => theme.fonts.header.weights.extraBold};
+    font-size: ${({ theme }) => theme.fonts.header.sizes[3]};
+    line-height: ${({ theme }) => theme.fonts.header.heights.default};
+  }
+
+  ul {
+    list-style-type: none
   }
 `
