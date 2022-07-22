@@ -5,6 +5,9 @@ const modifiers = {
   fullWidth: () => css`
     width: 100%;
   `,
+  fullHeight: () => css`
+    height: 100%;
+  `,
   primary: (theme: DefaultTheme) => css`
     height: 2.875rem;
     color: ${theme.colors.base.white};
@@ -60,10 +63,11 @@ const modifiers = {
   `,
 }
 
-interface WrapperProps extends Pick<ButtonProps, 'variant' | 'fullWidth'> {}
+interface WrapperProps
+  extends Pick<ButtonProps, 'variant' | 'fullWidth' | 'fullHeight'> {}
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, variant, fullWidth }) => css`
+  ${({ theme, variant, fullWidth, fullHeight }) => css`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,7 +78,8 @@ export const Wrapper = styled.button<WrapperProps>`
 
     text-transform: uppercase;
 
-    ${fullWidth && modifiers.fullWidth()}
     ${!!variant && modifiers[variant](theme)}
+    ${fullWidth && modifiers.fullWidth()}
+    ${fullHeight && modifiers.fullHeight()}
   `}
 `
