@@ -1,31 +1,28 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react'
+import { defaultTheme } from '../../styles/theme/default'
 import { Wrapper } from './styles'
 
+type Colors = keyof typeof defaultTheme.colors
+
+export type IconProps = {
+  icon: ReactNode
+  color: Colors
+}
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: 'primary' | 'secondary' | 'tertiary' | 'quaternary'
   fullWidth?: boolean
   fullHeight?: boolean
   label?: string
-  icon?: ReactNode
+  color?: Colors
+  backgroundColor?: Colors
+  hoverColor?: Colors
+  icon?: IconProps
 }
 
-export function Button({
-  variant,
-  fullWidth = false,
-  fullHeight = false,
-  label,
-  icon,
-  ...props
-}: ButtonProps) {
+export function Button({ label, icon, ...props }: ButtonProps) {
   return (
-    <Wrapper
-      variant={variant}
-      fullWidth={fullWidth}
-      fullHeight={fullHeight}
-      {...props}
-    >
-      {icon}
-      {!!label && <span>{label}</span>}
+    <Wrapper icon={icon} {...props}>
+      {icon?.icon}
+      {label}
     </Wrapper>
   )
 }
