@@ -4,9 +4,8 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
   height: 32px;
-  gap: 0.5rem;
+  gap: 0.125rem;
   border-radius: 6px;
   background-color: ${({ theme }) => theme.colors.button};
 

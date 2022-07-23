@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.main`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 `
 
@@ -51,3 +52,17 @@ export const ListItem = styled.li`
 `
 
 export const Menu = styled.section``
+
+export const MenuTitle = styled.h2`
+  color: ${({ theme }) => theme.colors.subtitle};
+  font-size: ${({ theme }) => theme.fonts.header.sizes[2]};
+`
+
+export const CoffeeList = styled.ul`
+  margin-top: 3rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 3rem;
+`

@@ -1,7 +1,9 @@
 import {
+  CoffeeList,
   Information,
   ListItem,
   Menu,
+  MenuTitle,
   Paragrath,
   Title,
   UnorderedList,
@@ -9,8 +11,11 @@ import {
 } from './styles'
 
 import image from '../../assets/images/cup_coffee.png'
+import imageExpresso from '../../assets/images/expresso.png'
+
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { Icon, IconProps } from '../../components/Icon'
+import { Card, CardProps } from '../../components/Card'
 
 const informationList: IconProps[] = [
   {
@@ -32,6 +37,51 @@ const informationList: IconProps[] = [
     icon: <Coffee weight="fill" size={16} />,
     text: 'O café chega fresquinho até você',
     color: 'purple',
+  },
+]
+
+const cardList: CardProps[] = [
+  {
+    image: imageExpresso,
+    types: ['tradicional', 'com leite'],
+    name: 'Expresso Tradicional',
+    description: 'O tradicional café feito com água quente e grãos moídos',
+    price: 9.9,
+  },
+  {
+    image: imageExpresso,
+    types: ['tradicional', 'com leite'],
+    name: 'Expresso Tradicional',
+    description: 'O tradicional café feito com água quente e grãos moídos',
+    price: 9.9,
+  },
+  {
+    image: imageExpresso,
+    types: ['tradicional', 'com leite'],
+    name: 'Expresso Tradicional',
+    description: 'O tradicional café feito com água quente e grãos moídos',
+    price: 9.9,
+  },
+  {
+    image: imageExpresso,
+    types: ['tradicional', 'com leite'],
+    name: 'Expresso Tradicional',
+    description: 'O tradicional café feito com água quente e grãos moídos',
+    price: 9.9,
+  },
+  {
+    image: imageExpresso,
+    types: ['tradicional', 'com leite'],
+    name: 'Expresso Tradicional',
+    description: 'O tradicional café feito com água quente e grãos moídos',
+    price: 9.9,
+  },
+  {
+    image: imageExpresso,
+    types: ['tradicional', 'com leite'],
+    name: 'Expresso Tradicional',
+    description: 'O tradicional café feito com água quente e grãos moídos',
+    price: 9.9,
   },
 ]
 
@@ -58,7 +108,14 @@ export function Home() {
         <img src={image} alt="Copo de café" />
       </Information>
 
-      <Menu></Menu>
+      <Menu>
+        <MenuTitle>Nossos cafés</MenuTitle>
+        <CoffeeList>
+          {cardList.map((coffee) => (
+            <Card key={coffee.name} {...coffee} />
+          ))}
+        </CoffeeList>
+      </Menu>
     </Wrapper>
   )
 }
