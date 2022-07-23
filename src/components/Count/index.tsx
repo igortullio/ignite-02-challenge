@@ -17,18 +17,21 @@ export function Count() {
   return (
     <Wrapper>
       <Button
-        variant="secondary"
-        fullWidth
-        fullHeight
-        icon={<Minus size={14} />}
+        hoverColor="purpleDark"
+        icon={{
+          icon: <Minus size={14} />,
+          color: 'purple',
+          hoverColor: 'purpleDark',
+        }}
         onClick={handleMinusClick}
       />
       <Value>{value}</Value>
       <Button
-        variant="secondary"
-        fullWidth
-        fullHeight
-        icon={<Plus size={14} />}
+        icon={{
+          icon: <Plus size={14} />,
+          color: 'purple',
+          hoverColor: 'purpleDark',
+        }}
         onClick={handlePlusClick}
       />
     </Wrapper>

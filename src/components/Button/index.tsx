@@ -7,6 +7,7 @@ type Colors = keyof typeof defaultTheme.colors
 export type IconProps = {
   icon: ReactNode
   color: Colors
+  hoverColor?: Colors
 }
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean

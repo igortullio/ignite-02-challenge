@@ -11,6 +11,10 @@ const modifiers = {
   hasIcon: (theme: DefaultTheme, icon: IconProps) => css`
     svg {
       color: ${theme.colors[icon.color]};
+
+      &:hover {
+        color: ${theme.colors[icon.hoverColor || icon.color]};
+      }
     }
   `,
 }
