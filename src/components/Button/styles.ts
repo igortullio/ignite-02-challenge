@@ -10,55 +10,55 @@ const modifiers = {
   `,
   primary: (theme: DefaultTheme) => css`
     height: 2.875rem;
-    color: ${theme.colors.base.white};
-    background-color: ${theme.colors.product.yellow};
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.yellow};
     padding: 0.755rem 0.5rem;
 
     font-weight: ${theme.fonts.text.weights.bold};
 
     &:hover {
-      background: ${theme.colors.product.yellowDark};
+      background: ${theme.colors.yellowDark};
     }
   `,
   secondary: (theme: DefaultTheme) => css`
     height: 2.375rem;
-    color: ${theme.colors.base.white};
-    background-color: ${theme.colors.product.purpleDark};
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.purpleDark};
     padding: 0.5rem;
 
     &:hover {
-      background: ${theme.colors.product.purple};
+      background: ${theme.colors.purple};
     }
   `,
   tertiary: (theme: DefaultTheme) => css`
     height: 2rem;
-    color: ${theme.colors.base.text};
-    background: ${theme.colors.base.button};
+    color: ${theme.colors.text};
+    background: ${theme.colors.button};
     padding: 0 0.5rem;
 
     font-size: ${theme.fonts.text.sizes[1]};
     line-height: ${({ theme }) => theme.fonts.text.heights.extended};
 
     svg {
-      color: ${theme.colors.product.purple};
+      color: ${theme.colors.purple};
     }
 
     &:hover {
-      background: ${theme.colors.base.hover};
+      background: ${theme.colors.hover};
     }
   `,
   quaternary: (theme: DefaultTheme) => css`
     height: 2.375rem;
-    color: ${theme.colors.base.white};
-    background: ${theme.colors.product.yellowLight};
+    color: ${theme.colors.white};
+    background: ${theme.colors.yellowLight};
     padding: 0.5rem;
 
     svg {
-      color: ${theme.colors.product.yellowDark};
+      color: ${theme.colors.yellowDark};
     }
 
     &:hover {
-      background: ${theme.colors.product.yellow};
+      background: ${theme.colors.yellow};
     }
   `,
 }

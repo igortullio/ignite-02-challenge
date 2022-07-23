@@ -8,23 +8,23 @@ export const Wrapper = styled.div`
   height: 32px;
   gap: 0.5rem;
   border-radius: 6px;
-  background-color: ${({ theme }) => theme.colors.base.button};
+  background-color: ${({ theme }) => theme.colors.button};
 
   button {
-    background-color: ${({ theme }) => theme.colors.base.button};
-    color: ${({ theme }) => theme.colors.product.purple};
+    background-color: ${({ theme }) => theme.colors.button};
+    color: ${({ theme }) => theme.colors.purple};
 
     :focus {
       box-shadow: none;
     }
 
     &:hover {
-      background-color: ${({ theme }) => theme.colors.base.button};
-      color: ${({ theme }) => theme.colors.product.purpleDark};
+      background-color: ${({ theme }) => theme.colors.button};
+      color: ${({ theme }) => theme.colors.purpleDark};
     }
   }
 `
 
 export const Value = styled.span`
-  color: ${({ theme }) => theme.colors.base.text};
+  color: ${({ theme }) => theme.colors.text};
 `

@@ -26,12 +26,12 @@ export const Information = styled.section`
 `
 
 export const Title = styled.h1`
-  color: ${({ theme }) => theme.colors.base.title};
+  color: ${({ theme }) => theme.colors.title};
 `
 
 export const Paragrath = styled.p`
   font-size: ${({ theme }) => theme.fonts.text.sizes[5]};
-  color: ${({ theme }) => theme.colors.base.subtitle};
+  color: ${({ theme }) => theme.colors.subtitle};
 `
 
 export const UnorderedList = styled.ul`

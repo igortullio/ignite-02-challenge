@@ -9,10 +9,10 @@ export const Wrapper = styled.div`
 `
 
 export const CIRCLE_COLORS = {
-  yellow: defaultTheme.colors.product.yellow,
-  yellowDark: defaultTheme.colors.product.yellowDark,
-  black: defaultTheme.colors.base.text,
-  purple: defaultTheme.colors.product.purple,
+  yellow: defaultTheme.colors.yellow,
+  yellowDark: defaultTheme.colors.yellowDark,
+  black: defaultTheme.colors.text,
+  purple: defaultTheme.colors.purple,
 } as const
 
 interface CircleProps {
@@ -28,5 +28,5 @@ export const Circle = styled.span<CircleProps>`
   height: 2rem;
   background-color: ${({ circleColor }) => CIRCLE_COLORS[circleColor]};
   border-radius: 50%;
-  color: ${({ theme }) => theme.colors.base.background};
+  color: ${({ theme }) => theme.colors.background};
 `
