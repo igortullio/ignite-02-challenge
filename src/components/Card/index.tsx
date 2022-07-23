@@ -1,7 +1,6 @@
 import { ShoppingCart } from 'phosphor-react'
-import { Button } from '../Button'
-import { Count } from '../Count'
 import {
+  BuyContainer,
   Description,
   Footer,
   Header,
@@ -13,6 +12,8 @@ import {
   Types,
   Wrapper,
 } from './styles'
+import { Button } from '../Button'
+import { Count } from '../Count'
 
 export type CardType =
   | 'tradicional'
@@ -50,18 +51,17 @@ export function Card({ image, types, name, description, price }: CardProps) {
 
       <Footer>
         <PriceContainer>
-          <span>R$</span>
-          <Price>{price}</Price>
+          R$<Price>{price}</Price>
         </PriceContainer>
 
-        <div>
+        <BuyContainer>
           <Count />
           <Button
             backgroundColor="purpleDark"
             hoverColor="purple"
             icon={{ icon: <ShoppingCart weight="fill" />, color: 'white' }}
           />
-        </div>
+        </BuyContainer>
       </Footer>
     </Wrapper>
   )

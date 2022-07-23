@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.li`
   width: 16rem;
   height: 19.375rem;
   background-color: ${({ theme }) => theme.colors.card};
@@ -72,11 +72,6 @@ export const Footer = styled.footer`
   align-items: center;
   justify-content: space-between;
   gap: 0.25rem;
-
-  div {
-    display: flex;
-    gap: 0.25rem;
-  }
 `
 
 export const PriceContainer = styled.div`
@@ -88,4 +83,9 @@ export const PriceContainer = styled.div`
 export const Price = styled.h4`
   font-size: ${({ theme }) => theme.fonts.header.sizes[2]};
   font-weight: ${({ theme }) => theme.fonts.header.weights.extraBold};
+`
+
+export const BuyContainer = styled.div`
+  display: flex;
+  gap: 0.25rem;
 `
