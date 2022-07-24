@@ -10,12 +10,18 @@ import {
   TitleContainer,
   InformationList,
   Wrapper,
+  MenuHeader,
+  FilterTypeLabel,
+  FilterTypeInput,
+  Filter,
 } from './styles'
 import { Icon } from '../../components/Icon'
 import { Card } from '../../components/Card'
 import cupCoffee from '../../assets/images/cup_coffee.png'
 import { informationList } from '../../assets/objects/informations'
 import { cardList } from '../../assets/objects/cards'
+
+const typeList = ['tradicional', 'especial', 'com leite', 'alcoólico', 'gelado']
 
 export function Home() {
   return (
@@ -41,7 +47,17 @@ export function Home() {
       </Information>
 
       <Menu>
-        <MenuTitle>Nossos cafés</MenuTitle>
+        <MenuHeader>
+          <MenuTitle>Nossos cafés</MenuTitle>
+          <Filter>
+            {typeList.map((type) => (
+              <>
+                <FilterTypeInput key={type} type="checkbox" id={type} />
+                <FilterTypeLabel htmlFor={type}>{type}</FilterTypeLabel>
+              </>
+            ))}
+          </Filter>
+        </MenuHeader>
         <CoffeeList>
           {cardList.map((coffee) => (
             <Card key={coffee.name} {...coffee} />
