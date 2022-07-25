@@ -15,6 +15,8 @@ export const Information = styled.section`
   gap: 1rem;
 `
 
+export const InformationImage = styled.img``
+
 export const InformationContainer = styled.div`
   display: flex;
   flex-direction: column;

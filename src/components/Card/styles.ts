@@ -15,6 +15,8 @@ export const Wrapper = styled.li`
   text-align: center;
 `
 
+export const CardImage = styled.img``
+
 export const Header = styled.header`
   display: flex;
   flex-direction: column;

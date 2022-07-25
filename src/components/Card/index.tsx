@@ -1,6 +1,7 @@
 import { ShoppingCart } from 'phosphor-react'
 import {
   BuyContainer,
+  CardImage,
   Description,
   Footer,
   Header,
@@ -34,7 +35,7 @@ export function Card({ image, types, name, description, price }: CardProps) {
   return (
     <Wrapper>
       <Header>
-        <img src={image} alt="" />
+        <CardImage src={image} alt="Uma xícara de café" />
 
         <Types>
           {types.map((type) => (

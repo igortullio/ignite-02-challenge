@@ -14,6 +14,7 @@ import {
   FilterTypeLabel,
   FilterTypeInput,
   Filter,
+  InformationImage,
 } from './styles'
 import { Icon } from '../../components/Icon'
 import { Card } from '../../components/Card'
@@ -43,7 +44,7 @@ export function Home() {
             ))}
           </InformationList>
         </InformationContainer>
-        <img src={cupCoffee} alt="Copo de café" />
+        <InformationImage src={cupCoffee} alt="Copo de café" />
       </Information>
 
       <Menu>
