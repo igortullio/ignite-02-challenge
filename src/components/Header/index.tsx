@@ -1,4 +1,5 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
+import { Link } from 'react-router-dom'
 import { Button } from '../Button'
 import { Logo } from '../Logo'
 
@@ -7,7 +8,9 @@ import * as S from './styles'
 export function Header() {
   return (
     <S.Wrapper>
-      <Logo />
+      <Link to="/">
+        <Logo />
+      </Link>
 
       <S.ButtonContainer>
         <Button
