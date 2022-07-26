@@ -22,6 +22,10 @@ export const VenueInformation = styled.div`
   background-color: ${({ theme }) => theme.colors.card};
   padding: 2.5rem;
   border-radius: 6px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `
 
 export const VenueHeader = styled.header`
@@ -42,11 +46,45 @@ export const VenueTitle = styled.span``
 
 export const VenueSubtitle = styled.span``
 
+export const VenueForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`
+
+export interface VenueFormLineProps {
+  templateColumns: string
+}
+
+export const VenueFormLine = styled.div<VenueFormLineProps>`
+  display: grid;
+  grid-template-columns: ${({ templateColumns }) => templateColumns};
+  gap: 1rem;
+`
+
 export const PaymentInformation = styled.div`
   background-color: ${({ theme }) => theme.colors.card};
   padding: 2.5rem;
   border-radius: 6px;
 `
+
+export const PaymentHeader = styled.header`
+  display: flex;
+  gap: 0.5rem;
+`
+
+export const PaymentHeaderIcon = styled.div`
+  color: ${({ theme }) => theme.colors.purple};
+`
+
+export const PaymentHeaderInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const PaymentTitle = styled.span``
+
+export const PaymentSubtitle = styled.span``
 
 export const Summary = styled.div`
   display: flex;

@@ -1,11 +1,17 @@
-import { MapPinLine } from 'phosphor-react'
+import { CurrencyDollar, MapPinLine } from 'phosphor-react'
 import { Button } from '../../components/Button'
+import { Input } from '../../components/Input'
 import { Card } from './components/Card'
 import {
   CardList,
   CheckoutInformation,
   CheckoutTitle,
+  PaymentHeader,
+  PaymentHeaderIcon,
+  PaymentHeaderInfo,
   PaymentInformation,
+  PaymentSubtitle,
+  PaymentTitle,
   Summary,
   SummaryCard,
   SummaryFooter,
@@ -13,6 +19,8 @@ import {
   ValuesContainer,
   ValuesItem,
   ValuesTotal,
+  VenueForm,
+  VenueFormLine,
   VenueHeader,
   VenueHeaderIcon,
   VenueHeaderInfo,
@@ -39,8 +47,37 @@ export function Checkout() {
               </VenueSubtitle>
             </VenueHeaderInfo>
           </VenueHeader>
+          <VenueForm>
+            <VenueFormLine templateColumns="200px">
+              <Input placeholder="CPF" />
+            </VenueFormLine>
+            <VenueFormLine templateColumns="1fr">
+              <Input placeholder="Rua" />
+            </VenueFormLine>
+            <VenueFormLine templateColumns="200px 1fr">
+              <Input placeholder="Número" />
+              <Input placeholder="Complemento" />
+            </VenueFormLine>
+            <VenueFormLine templateColumns="200px 1fr 60px">
+              <Input placeholder="Bairro" />
+              <Input placeholder="Cidade" />
+              <Input placeholder="UF" size={2} />
+            </VenueFormLine>
+          </VenueForm>
         </VenueInformation>
-        <PaymentInformation></PaymentInformation>
+        <PaymentInformation>
+          <PaymentHeader>
+            <PaymentHeaderIcon>
+              <CurrencyDollar size={22} />
+            </PaymentHeaderIcon>
+            <PaymentHeaderInfo>
+              <PaymentTitle>Pagamento</PaymentTitle>
+              <PaymentSubtitle>
+                O pagamento é feito na entrega. Escolha a forma que deseja pagar
+              </PaymentSubtitle>
+            </PaymentHeaderInfo>
+          </PaymentHeader>
+        </PaymentInformation>
       </CheckoutInformation>
 
       <Summary>
