@@ -2,110 +2,85 @@ import { CurrencyDollar, MapPinLine } from 'phosphor-react'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { Card } from './components/Card'
-import {
-  CardList,
-  CheckoutInformation,
-  CheckoutTitle,
-  PaymentHeader,
-  PaymentHeaderIcon,
-  PaymentHeaderInfo,
-  PaymentInformation,
-  PaymentSubtitle,
-  PaymentTitle,
-  Summary,
-  SummaryCard,
-  SummaryFooter,
-  SummaryTitle,
-  ValuesContainer,
-  ValuesItem,
-  ValuesTotal,
-  VenueForm,
-  VenueFormLine,
-  VenueHeader,
-  VenueHeaderIcon,
-  VenueHeaderInfo,
-  VenueInformation,
-  VenueSubtitle,
-  VenueTitle,
-  Wrapper,
-} from './styles'
+
+import * as S from './styles'
 
 export function Checkout() {
   return (
-    <Wrapper>
-      <CheckoutInformation>
-        <CheckoutTitle>Complete seu pedido</CheckoutTitle>
-        <VenueInformation>
-          <VenueHeader>
-            <VenueHeaderIcon>
+    <S.Wrapper>
+      <S.CheckoutInformation>
+        <S.CheckoutTitle>Complete seu pedido</S.CheckoutTitle>
+        <S.VenueInformation>
+          <S.VenueHeader>
+            <S.VenueHeaderIcon>
               <MapPinLine size={22} />
-            </VenueHeaderIcon>
-            <VenueHeaderInfo>
-              <VenueTitle>Endereço de Entrega</VenueTitle>
-              <VenueSubtitle>
+            </S.VenueHeaderIcon>
+            <S.VenueHeaderInfo>
+              <S.VenueTitle>Endereço de Entrega</S.VenueTitle>
+              <S.VenueSubtitle>
                 Informe o endereço onde deseja receber seu pedido
-              </VenueSubtitle>
-            </VenueHeaderInfo>
-          </VenueHeader>
-          <VenueForm>
-            <VenueFormLine templateColumns="200px">
+              </S.VenueSubtitle>
+            </S.VenueHeaderInfo>
+          </S.VenueHeader>
+          <S.VenueForm>
+            <S.VenueFormLine templateColumns="200px">
               <Input placeholder="CPF" />
-            </VenueFormLine>
-            <VenueFormLine templateColumns="1fr">
+            </S.VenueFormLine>
+            <S.VenueFormLine templateColumns="1fr">
               <Input placeholder="Rua" />
-            </VenueFormLine>
-            <VenueFormLine templateColumns="200px 1fr">
+            </S.VenueFormLine>
+            <S.VenueFormLine templateColumns="200px 1fr">
               <Input placeholder="Número" />
               <Input placeholder="Complemento" />
-            </VenueFormLine>
-            <VenueFormLine templateColumns="200px 1fr 60px">
+            </S.VenueFormLine>
+            <S.VenueFormLine templateColumns="200px 1fr 60px">
               <Input placeholder="Bairro" />
               <Input placeholder="Cidade" />
               <Input placeholder="UF" size={2} />
-            </VenueFormLine>
-          </VenueForm>
-        </VenueInformation>
-        <PaymentInformation>
-          <PaymentHeader>
-            <PaymentHeaderIcon>
+            </S.VenueFormLine>
+          </S.VenueForm>
+        </S.VenueInformation>
+        <S.PaymentInformation>
+          <S.PaymentHeader>
+            <S.PaymentHeaderIcon>
               <CurrencyDollar size={22} />
-            </PaymentHeaderIcon>
-            <PaymentHeaderInfo>
-              <PaymentTitle>Pagamento</PaymentTitle>
-              <PaymentSubtitle>
+            </S.PaymentHeaderIcon>
+            <S.PaymentHeaderInfo>
+              <S.PaymentTitle>Pagamento</S.PaymentTitle>
+              <S.PaymentSubtitle>
                 O pagamento é feito na entrega. Escolha a forma que deseja pagar
-              </PaymentSubtitle>
-            </PaymentHeaderInfo>
-          </PaymentHeader>
-        </PaymentInformation>
-      </CheckoutInformation>
+              </S.PaymentSubtitle>
+            </S.PaymentHeaderInfo>
+          </S.PaymentHeader>
+        </S.PaymentInformation>
+      </S.CheckoutInformation>
 
-      <Summary>
-        <SummaryTitle>Cafés selecionados</SummaryTitle>
-        <SummaryCard>
-          <CardList>
+      <S.Summary>
+        <S.SummaryTitle>Cafés selecionados</S.SummaryTitle>
+        <S.SummaryCard>
+          <S.CardList>
             <Card />
             <Card />
             <Card />
-          </CardList>
+          </S.CardList>
 
-          <SummaryFooter>
-            <ValuesContainer>
-              <ValuesItem>Total de items</ValuesItem>
-              <ValuesItem>R$ 29,70</ValuesItem>
-            </ValuesContainer>
-            <ValuesContainer>
-              <ValuesItem>Entrega</ValuesItem>
-              <ValuesItem>R$ 3,50</ValuesItem>
-            </ValuesContainer>
-            <ValuesContainer>
-              <ValuesTotal>Total</ValuesTotal>
-              <ValuesTotal>R$ 33,20</ValuesTotal>
-            </ValuesContainer>
+          <S.SummaryFooter>
+            <S.ValuesContainer>
+              <S.ValuesItem>Total de items</S.ValuesItem>
+              <S.ValuesItem>R$ 29,70</S.ValuesItem>
+            </S.ValuesContainer>
+            <S.ValuesContainer>
+              <S.ValuesItem>Entrega</S.ValuesItem>
+              <S.ValuesItem>R$ 3,50</S.ValuesItem>
+            </S.ValuesContainer>
+            <S.ValuesContainer>
+              <S.ValuesTotal>Total</S.ValuesTotal>
+              <S.ValuesTotal>R$ 33,20</S.ValuesTotal>
+            </S.ValuesContainer>
             <Button label="Confirmar pedido" fullWidth />
-          </SummaryFooter>
-        </SummaryCard>
-      </Summary>
-    </Wrapper>
+          </S.SummaryFooter>
+        </S.SummaryCard>
+      </S.Summary>
+    </S.Wrapper>
   )
 }
