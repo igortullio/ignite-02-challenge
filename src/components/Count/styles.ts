@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 32px;
+  padding: 0.5rem;
   gap: 0.125rem;
   border-radius: 6px;
   background-color: ${({ theme }) => theme.colors.button};
@@ -12,6 +12,8 @@ export const Wrapper = styled.div`
   button {
     background-color: ${({ theme }) => theme.colors.button};
     color: ${({ theme }) => theme.colors.purple};
+
+    padding: 0 0.5rem;
 
     :focus {
       box-shadow: none;
