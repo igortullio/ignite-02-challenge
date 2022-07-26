@@ -1,8 +1,9 @@
 import { InputHTMLAttributes } from 'react'
-import { Wrapper } from './styles'
+
+import * as S from './styles'
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
 export function Input({ ...props }: InputProps) {
-  return <Wrapper {...props}></Wrapper>
+  return <S.Wrapper {...props}></S.Wrapper>
 }

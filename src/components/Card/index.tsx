@@ -1,20 +1,8 @@
 import { ShoppingCart } from 'phosphor-react'
-import {
-  BuyContainer,
-  CardImage,
-  Description,
-  Footer,
-  Header,
-  Infos,
-  Name,
-  Price,
-  PriceContainer,
-  Type,
-  Types,
-  Wrapper,
-} from './styles'
 import { Button } from '../Button'
 import { Count } from '../Count'
+
+import * as S from './styles'
 
 export type CardType =
   | 'tradicional'
@@ -33,37 +21,37 @@ export interface CardProps {
 
 export function Card({ image, types, name, description, price }: CardProps) {
   return (
-    <Wrapper>
-      <Header>
-        <CardImage src={image} alt="Uma xícara de café" />
+    <S.Wrapper>
+      <S.Header>
+        <S.CardImage src={image} alt="Uma xícara de café" />
 
-        <Types>
+        <S.Types>
           {types.map((type) => (
-            <Type key={type}>{type}</Type>
+            <S.Type key={type}>{type}</S.Type>
           ))}
-        </Types>
-      </Header>
+        </S.Types>
+      </S.Header>
 
-      <Infos>
-        <Name>{name}</Name>
+      <S.Infos>
+        <S.Name>{name}</S.Name>
 
-        <Description>{description}</Description>
-      </Infos>
+        <S.Description>{description}</S.Description>
+      </S.Infos>
 
-      <Footer>
-        <PriceContainer>
-          R$<Price>{price}</Price>
-        </PriceContainer>
+      <S.Footer>
+        <S.PriceContainer>
+          R$<S.Price>{price}</S.Price>
+        </S.PriceContainer>
 
-        <BuyContainer>
+        <S.BuyContainer>
           <Count />
           <Button
             backgroundColor="purpleDark"
             hoverColor="purple"
             icon={{ icon: <ShoppingCart weight="fill" />, color: 'white' }}
           />
-        </BuyContainer>
-      </Footer>
-    </Wrapper>
+        </S.BuyContainer>
+      </S.Footer>
+    </S.Wrapper>
   )
 }

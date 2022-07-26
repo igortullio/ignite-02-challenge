@@ -1,14 +1,15 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { Button } from '../Button'
 import { Logo } from '../Logo'
-import { ButtonContainer, Wrapper } from './styles'
+
+import * as S from './styles'
 
 export function Header() {
   return (
-    <Wrapper>
+    <S.Wrapper>
       <Logo />
 
-      <ButtonContainer>
+      <S.ButtonContainer>
         <Button
           label="Brasília, DF"
           color="purpleDark"
@@ -21,7 +22,7 @@ export function Header() {
           hoverColor="yellow"
           icon={{ icon: <ShoppingCart weight="fill" />, color: 'yellowDark' }}
         />
-      </ButtonContainer>
-    </Wrapper>
+      </S.ButtonContainer>
+    </S.Wrapper>
   )
 }

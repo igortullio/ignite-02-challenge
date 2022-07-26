@@ -1,25 +1,18 @@
 import { Trash } from 'phosphor-react'
 import { Button } from '../../../../components/Button'
 import { Count } from '../../../../components/Count'
-import {
-  Image,
-  Information,
-  InformationFooter,
-  Price,
-  PriceContainer,
-  Title,
-  Wrapper,
-} from './styles'
 
 import americano from '../../../../assets/images/americano.png'
 
+import * as S from './styles'
+
 export function Card() {
   return (
-    <Wrapper>
-      <Image src={americano} alt="" />
-      <Information>
-        <Title>Expresso Tradicional</Title>
-        <InformationFooter>
+    <S.Wrapper>
+      <S.Image src={americano} alt="" />
+      <S.Information>
+        <S.Title>Expresso Tradicional</S.Title>
+        <S.InformationFooter>
           <Count />
           <Button
             icon={{ icon: <Trash size={16} />, color: 'purple' }}
@@ -28,11 +21,11 @@ export function Card() {
             hoverColor="hover"
             color="text"
           />
-        </InformationFooter>
-      </Information>
-      <PriceContainer>
-        R$ <Price>9,90</Price>
-      </PriceContainer>
-    </Wrapper>
+        </S.InformationFooter>
+      </S.Information>
+      <S.PriceContainer>
+        R$ <S.Price>9,90</S.Price>
+      </S.PriceContainer>
+    </S.Wrapper>
   )
 }

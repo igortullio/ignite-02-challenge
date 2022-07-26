@@ -1,7 +1,8 @@
 import { Minus, Plus } from 'phosphor-react'
 import { useState } from 'react'
 import { Button } from '../Button'
-import { Value, Wrapper } from './styles'
+
+import * as S from './styles'
 
 export function Count() {
   const [value, setValue] = useState(0)
@@ -15,7 +16,7 @@ export function Count() {
   }
 
   return (
-    <Wrapper>
+    <S.Wrapper>
       <Button
         hoverColor="purpleDark"
         icon={{
@@ -25,7 +26,7 @@ export function Count() {
         }}
         onClick={handleMinusClick}
       />
-      <Value>{value}</Value>
+      <S.Value>{value}</S.Value>
       <Button
         icon={{
           icon: <Plus size={14} />,
@@ -34,6 +35,6 @@ export function Count() {
         }}
         onClick={handlePlusClick}
       />
-    </Wrapper>
+    </S.Wrapper>
   )
 }

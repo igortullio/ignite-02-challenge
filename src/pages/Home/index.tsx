@@ -1,70 +1,56 @@
-import {
-  CoffeeList,
-  Information,
-  InformationContainer,
-  InformationItem,
-  Menu,
-  MenuTitle,
-  Paragrath,
-  Title,
-  TitleContainer,
-  InformationList,
-  Wrapper,
-  MenuHeader,
-  FilterTypeLabel,
-  FilterTypeInput,
-  Filter,
-  InformationImage,
-} from './styles'
 import { Icon } from '../../components/Icon'
 import { Card } from '../../components/Card'
 import cupCoffee from '../../assets/images/cup_coffee.png'
 import { informationList } from '../../assets/objects/informations'
 import { cardList } from '../../assets/objects/cards'
 
+import * as S from './styles'
+
 const typeList = ['tradicional', 'especial', 'com leite', 'alcoólico', 'gelado']
 
 export function Home() {
   return (
-    <Wrapper>
-      <Information>
-        <InformationContainer>
-          <TitleContainer>
-            <Title>Encontre o café perfeito para qualquer hora do dia</Title>
-            <Paragrath>
+    <S.Wrapper>
+      <S.Information>
+        <S.InformationContainer>
+          <S.TitleContainer>
+            <S.Title>
+              Encontre o café perfeito para qualquer hora do dia
+            </S.Title>
+            <S.Paragrath>
               Com o Coffee Delivery você recebe seu café onde estiver, a
               qualquer hora
-            </Paragrath>
-          </TitleContainer>
-          <InformationList>
+            </S.Paragrath>
+          </S.TitleContainer>
+          <S.InformationList>
             {informationList.map((item) => (
-              <InformationItem key={item.text}>
+              <S.InformationItem key={item.text}>
                 <Icon {...item} />
-              </InformationItem>
+              </S.InformationItem>
             ))}
-          </InformationList>
-        </InformationContainer>
-        <InformationImage src={cupCoffee} alt="Copo de café" />
-      </Information>
+          </S.InformationList>
+        </S.InformationContainer>
+        <S.InformationImage src={cupCoffee} alt="Copo de café" />
+      </S.Information>
 
-      <Menu>
-        <MenuHeader>
-          <MenuTitle>Nossos cafés</MenuTitle>
-          <Filter>
+      <S.Menu>
+        <S.MenuHeader>
+          <S.MenuTitle>Nossos cafés</S.MenuTitle>
+          <S.Filter>
             {typeList.map((type) => (
               <>
-                <FilterTypeInput key={type} type="checkbox" id={type} />
-                <FilterTypeLabel htmlFor={type}>{type}</FilterTypeLabel>
+                <S.FilterTypeInput key={type} type="checkbox" id={type} />
+                <S.FilterTypeLabel htmlFor={type}>{type}</S.FilterTypeLabel>
               </>
             ))}
-          </Filter>
-        </MenuHeader>
-        <CoffeeList>
+          </S.Filter>
+        </S.MenuHeader>
+        <S.CoffeeList>
           {cardList.map((coffee) => (
             <Card key={coffee.name} {...coffee} />
           ))}
-        </CoffeeList>
-      </Menu>
-    </Wrapper>
+        </S.CoffeeList>
+      </S.Menu>
+    </S.Wrapper>
   )
 }

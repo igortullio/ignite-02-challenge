@@ -1,6 +1,7 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react'
 import { defaultTheme } from '../../styles/theme/default'
-import { Wrapper } from './styles'
+
+import * as S from './styles'
 
 type Colors = keyof typeof defaultTheme.colors
 
@@ -21,9 +22,9 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function Button({ label, icon, ...props }: ButtonProps) {
   return (
-    <Wrapper icon={icon} {...props}>
+    <S.Wrapper icon={icon} {...props}>
       {icon?.icon}
       {label}
-    </Wrapper>
+    </S.Wrapper>
   )
 }
