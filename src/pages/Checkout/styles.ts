@@ -66,6 +66,10 @@ export const PaymentInformation = styled.div`
   background-color: ${({ theme }) => theme.colors.card};
   padding: 2.5rem;
   border-radius: 6px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `
 
 export const PaymentHeader = styled.header`
@@ -85,6 +89,12 @@ export const PaymentHeaderInfo = styled.div`
 export const PaymentTitle = styled.span``
 
 export const PaymentSubtitle = styled.span``
+
+export const PaymentOptionContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+`
 
 export const Summary = styled.div`
   display: flex;
