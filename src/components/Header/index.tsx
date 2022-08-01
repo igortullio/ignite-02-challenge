@@ -1,11 +1,15 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { CartContext } from '../../contexts/CartContext'
 import { Button } from '../Button'
 import { Logo } from '../Logo'
 
 import * as S from './styles'
 
 export function Header() {
+  const { items } = useContext(CartContext)
+
   return (
     <S.Wrapper>
       <Link to="/">
@@ -20,11 +24,14 @@ export function Header() {
           hoverColor="purpleLight"
           icon={{ icon: <MapPin weight="fill" />, color: 'purple' }}
         />
-        <Button
-          backgroundColor="yellowLight"
-          hoverColor="yellow"
-          icon={{ icon: <ShoppingCart weight="fill" />, color: 'yellowDark' }}
-        />
+        <Link to="/checkout">
+          <Button
+            backgroundColor="yellowLight"
+            hoverColor="yellow"
+            icon={{ icon: <ShoppingCart weight="fill" />, color: 'yellowDark' }}
+            quantity={items.length}
+          />
+        </Link>
       </S.ButtonContainer>
     </S.Wrapper>
   )
