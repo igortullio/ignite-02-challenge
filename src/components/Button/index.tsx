@@ -18,11 +18,13 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   backgroundColor?: Colors
   hoverColor?: Colors
   icon?: IconProps
+  quantity?: number
 }
 
-export function Button({ label, icon, ...props }: ButtonProps) {
+export function Button({ label, icon, quantity = 0, ...props }: ButtonProps) {
   return (
     <S.Wrapper icon={icon} {...props}>
+      {quantity > 0 && <S.Badge>{quantity}</S.Badge>}
       {icon?.icon}
       {label}
     </S.Wrapper>

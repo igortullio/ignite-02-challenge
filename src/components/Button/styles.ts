@@ -30,6 +30,7 @@ export const Wrapper = styled.button<WrapperProps>`
     backgroundColor,
     hoverColor,
     icon,
+    quantity,
   }) => css`
     display: flex;
     align-items: center;
@@ -40,6 +41,7 @@ export const Wrapper = styled.button<WrapperProps>`
     cursor: pointer;
     border: none;
     text-transform: uppercase;
+    position: relative;
 
     color: ${theme.colors[color || 'white']};
     background-color: ${theme.colors[backgroundColor || 'yellow']};
@@ -51,5 +53,27 @@ export const Wrapper = styled.button<WrapperProps>`
     ${fullWidth && modifiers.fullWidth()}
     ${fullHeight && modifiers.fullHeight()}
     ${!!icon && modifiers.hasIcon(theme, icon)}
+  `}
+`
+
+interface BadgeProps extends Pick<ButtonProps, 'backgroundColor'> {}
+
+export const Badge = styled.span<BadgeProps>`
+  ${({ theme, backgroundColor }) => css`
+    color: ${theme.colors.white};
+    background-color: ${theme.colors[backgroundColor || 'yellowDark']};
+    font-size: ${theme.fonts.text.sizes[1]};
+    font-weight: ${theme.fonts.text.weights.bold};
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    border-radius: 50%;
+    width: 1.25rem;
+    height: 1.25rem;
+    top: -0.5rem;
+    right: -0.5rem;
   `}
 `
