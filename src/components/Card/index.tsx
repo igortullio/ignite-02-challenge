@@ -1,7 +1,7 @@
-import currency from 'currency.js'
 import { ShoppingCart } from 'phosphor-react'
 import { useContext, useState } from 'react'
 import { CartContext } from '../../contexts/CartContext'
+import { formatCurrency } from '../../utils/currencyUtil'
 import { Button } from '../Button'
 import { Count } from '../Count'
 
@@ -59,12 +59,7 @@ export function Card({ image, types, name, description, price }: CardProps) {
         <S.PriceContainer>
           R$
           <S.Price>
-            {currency(quantity === 0 ? price : price * quantity, {
-              symbol: '',
-              precision: 2,
-              decimal: ',',
-              separator: '.',
-            }).format()}
+            {formatCurrency(quantity === 0 ? price : price * quantity, false)}
           </S.Price>
         </S.PriceContainer>
 

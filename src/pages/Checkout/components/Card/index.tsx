@@ -1,11 +1,11 @@
+import { useContext } from 'react'
 import { Trash } from 'phosphor-react'
 import { Button } from '../../../../components/Button'
 import { Count } from '../../../../components/Count'
-import { useContext } from 'react'
+import { CartContext } from '../../../../contexts/CartContext'
+import { formatCurrency } from '../../../../utils/currencyUtil'
 
 import * as S from './styles'
-import { CartContext } from '../../../../contexts/CartContext'
-import currency from 'currency.js'
 
 interface CardProps {
   name: string
@@ -39,14 +39,7 @@ export function Card({ name, quantity, price, image }: CardProps) {
         </S.InformationFooter>
       </S.Information>
       <S.PriceContainer>
-        <S.Price>
-          {currency(price * quantity, {
-            symbol: 'R$ ',
-            precision: 2,
-            decimal: ',',
-            separator: '.',
-          }).format()}
-        </S.Price>
+        <S.Price>{formatCurrency(price * quantity)}</S.Price>
       </S.PriceContainer>
     </S.Wrapper>
   )

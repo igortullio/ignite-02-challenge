@@ -1,4 +1,3 @@
-import currency from 'currency.js'
 import {
   Bank,
   CreditCard,
@@ -10,6 +9,7 @@ import { useContext } from 'react'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { CartContext } from '../../contexts/CartContext'
+import { formatCurrency } from '../../utils/currencyUtil'
 import { Card } from './components/Card'
 import { PaymentOption } from './components/PaymentOption'
 
@@ -105,35 +105,16 @@ export function Checkout() {
               <S.SummaryFooter>
                 <S.ValuesContainer>
                   <S.ValuesItem>Total dos items</S.ValuesItem>
-                  <S.ValuesItem>
-                    {currency(totalPrice, {
-                      symbol: 'R$ ',
-                      precision: 2,
-                      decimal: ',',
-                      separator: '.',
-                    }).format()}
-                  </S.ValuesItem>
+                  <S.ValuesItem>{formatCurrency(totalPrice)}</S.ValuesItem>
                 </S.ValuesContainer>
                 <S.ValuesContainer>
                   <S.ValuesItem>Entrega</S.ValuesItem>
-                  <S.ValuesItem>
-                    {currency(deliveryPrice, {
-                      symbol: 'R$ ',
-                      precision: 2,
-                      decimal: ',',
-                      separator: '.',
-                    }).format()}
-                  </S.ValuesItem>
+                  <S.ValuesItem>{formatCurrency(deliveryPrice)}</S.ValuesItem>
                 </S.ValuesContainer>
                 <S.ValuesContainer>
                   <S.ValuesTotal>Total</S.ValuesTotal>
                   <S.ValuesTotal>
-                    {currency(totalPrice + deliveryPrice, {
-                      symbol: 'R$ ',
-                      precision: 2,
-                      decimal: ',',
-                      separator: '.',
-                    }).format()}
+                    {formatCurrency(totalPrice + deliveryPrice)}
                   </S.ValuesTotal>
                 </S.ValuesContainer>
                 <Button label="Confirmar pedido" fullWidth />
