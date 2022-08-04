@@ -1,18 +1,20 @@
 import { Minus, Plus } from 'phosphor-react'
-import { useState } from 'react'
 import { Button } from '../Button'
 
 import * as S from './styles'
 
-export function Count() {
-  const [value, setValue] = useState(0)
+interface CountProps {
+  quantity: number
+  updateQuantity: (newValue: number) => void
+}
 
+export function Count({ quantity, updateQuantity }: CountProps) {
   function handleMinusClick() {
-    if (value > 0) setValue((state) => state - 1)
+    if (quantity > 0) updateQuantity(quantity - 1)
   }
 
   function handlePlusClick() {
-    setValue((state) => state + 1)
+    updateQuantity(quantity + 1)
   }
 
   return (
@@ -26,7 +28,7 @@ export function Count() {
         }}
         onClick={handleMinusClick}
       />
-      <S.Value>{value}</S.Value>
+      <S.Value>{quantity}</S.Value>
       <Button
         icon={{
           icon: <Plus size={14} />,

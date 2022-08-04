@@ -1,3 +1,4 @@
+import currency from 'currency.js'
 import {
   Bank,
   CreditCard,
@@ -5,8 +6,10 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
+import { useContext } from 'react'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
+import { CartContext } from '../../contexts/CartContext'
 import { Card } from './components/Card'
 import { PaymentOption } from './components/PaymentOption'
 
@@ -14,6 +17,14 @@ import * as S from './styles'
 import { PaymentOptionContainer } from './styles'
 
 export function Checkout() {
+  const { items } = useContext(CartContext)
+
+  const totalPrice = items.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0,
+  )
+  const deliveryPrice = 3.5
+
   return (
     <S.Wrapper>
       <S.CheckoutInformation>
@@ -82,28 +93,55 @@ export function Checkout() {
 
       <S.Summary>
         <S.SummaryTitle>Cafés selecionados</S.SummaryTitle>
-        <S.SummaryCard>
-          <S.CardList>
-            <Card />
-            <Card />
-            <Card />
-          </S.CardList>
 
-          <S.SummaryFooter>
-            <S.ValuesContainer>
-              <S.ValuesItem>Total de items</S.ValuesItem>
-              <S.ValuesItem>R$ 29,70</S.ValuesItem>
-            </S.ValuesContainer>
-            <S.ValuesContainer>
-              <S.ValuesItem>Entrega</S.ValuesItem>
-              <S.ValuesItem>R$ 3,50</S.ValuesItem>
-            </S.ValuesContainer>
-            <S.ValuesContainer>
-              <S.ValuesTotal>Total</S.ValuesTotal>
-              <S.ValuesTotal>R$ 33,20</S.ValuesTotal>
-            </S.ValuesContainer>
-            <Button label="Confirmar pedido" fullWidth />
-          </S.SummaryFooter>
+        <S.SummaryCard>
+          {items.length ? (
+            <>
+              <S.CardList>
+                {items.map((item) => (
+                  <Card key={item.name} {...item} />
+                ))}
+              </S.CardList>
+              <S.SummaryFooter>
+                <S.ValuesContainer>
+                  <S.ValuesItem>Total dos items</S.ValuesItem>
+                  <S.ValuesItem>
+                    {currency(totalPrice, {
+                      symbol: 'R$ ',
+                      precision: 2,
+                      decimal: ',',
+                      separator: '.',
+                    }).format()}
+                  </S.ValuesItem>
+                </S.ValuesContainer>
+                <S.ValuesContainer>
+                  <S.ValuesItem>Entrega</S.ValuesItem>
+                  <S.ValuesItem>
+                    {currency(deliveryPrice, {
+                      symbol: 'R$ ',
+                      precision: 2,
+                      decimal: ',',
+                      separator: '.',
+                    }).format()}
+                  </S.ValuesItem>
+                </S.ValuesContainer>
+                <S.ValuesContainer>
+                  <S.ValuesTotal>Total</S.ValuesTotal>
+                  <S.ValuesTotal>
+                    {currency(totalPrice + deliveryPrice, {
+                      symbol: 'R$ ',
+                      precision: 2,
+                      decimal: ',',
+                      separator: '.',
+                    }).format()}
+                  </S.ValuesTotal>
+                </S.ValuesContainer>
+                <Button label="Confirmar pedido" fullWidth />
+              </S.SummaryFooter>
+            </>
+          ) : (
+            <S.SummaryFooter>Nenhum item no carrinho</S.SummaryFooter>
+          )}
         </S.SummaryCard>
       </S.Summary>
     </S.Wrapper>

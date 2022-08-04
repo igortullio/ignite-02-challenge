@@ -1,4 +1,7 @@
+import currency from 'currency.js'
 import { ShoppingCart } from 'phosphor-react'
+import { useContext, useState } from 'react'
+import { CartContext } from '../../contexts/CartContext'
 import { Button } from '../Button'
 import { Count } from '../Count'
 
@@ -20,6 +23,20 @@ export interface CardProps {
 }
 
 export function Card({ image, types, name, description, price }: CardProps) {
+  const { addItem } = useContext(CartContext)
+  const [quantity, setQuantity] = useState(0)
+
+  function handleAddItem() {
+    addItem({
+      name,
+      price,
+      quantity,
+      image,
+    })
+
+    setQuantity(0)
+  }
+
   return (
     <S.Wrapper>
       <S.Header>
@@ -40,15 +57,25 @@ export function Card({ image, types, name, description, price }: CardProps) {
 
       <S.Footer>
         <S.PriceContainer>
-          R$<S.Price>{price}</S.Price>
+          R$
+          <S.Price>
+            {currency(quantity === 0 ? price : price * quantity, {
+              symbol: '',
+              precision: 2,
+              decimal: ',',
+              separator: '.',
+            }).format()}
+          </S.Price>
         </S.PriceContainer>
 
         <S.BuyContainer>
-          <Count />
+          <Count quantity={quantity} updateQuantity={setQuantity} />
           <Button
             backgroundColor="purpleDark"
             hoverColor="purple"
             icon={{ icon: <ShoppingCart weight="fill" />, color: 'white' }}
+            disabled={quantity <= 0}
+            onClick={handleAddItem}
           />
         </S.BuyContainer>
       </S.Footer>

@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.li`
-  width: 16rem;
-  height: 19.375rem;
   background-color: ${({ theme }) => theme.colors.card};
   border-radius: 6px 36px;
 
@@ -11,6 +9,7 @@ export const Wrapper = styled.li`
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem;
+  gap: 1rem;
 
   text-align: center;
 `
@@ -69,10 +68,10 @@ export const Description = styled.span`
 `
 
 export const Footer = styled.footer`
-  width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 0.25rem;
 `
 

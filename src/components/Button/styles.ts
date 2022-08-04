@@ -50,6 +50,11 @@ export const Wrapper = styled.button<WrapperProps>`
       background: ${theme.colors[hoverColor || 'yellowDark']};
     }
 
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
     ${fullWidth && modifiers.fullWidth()}
     ${fullHeight && modifiers.fullHeight()}
     ${!!icon && modifiers.hasIcon(theme, icon)}
