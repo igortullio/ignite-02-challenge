@@ -3,6 +3,7 @@ import { Card } from '../../components/Card'
 import cupCoffee from '../../assets/images/cup_coffee.png'
 import { informationList } from '../../assets/objects/informations'
 import { cardList } from '../../assets/objects/cards'
+import { Filter } from './components/Filter'
 
 import * as S from './styles'
 
@@ -36,14 +37,11 @@ export function Home() {
       <S.Menu>
         <S.MenuHeader>
           <S.MenuTitle>Nossos cafés</S.MenuTitle>
-          <S.Filter>
+          <S.FilterContainer>
             {typeList.map((type) => (
-              <>
-                <S.FilterTypeInput key={type} type="checkbox" id={type} />
-                <S.FilterTypeLabel htmlFor={type}>{type}</S.FilterTypeLabel>
-              </>
+              <Filter key={type} type={type} />
             ))}
-          </S.Filter>
+          </S.FilterContainer>
         </S.MenuHeader>
         <S.CoffeeList>
           {cardList.map((coffee) => (
