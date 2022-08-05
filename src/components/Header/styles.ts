@@ -6,6 +6,10 @@ export const Wrapper = styled.header`
   justify-content: space-between;
 
   padding: 2rem 0;
+
+  a:focus {
+    box-shadow: none;
+  }
 `
 
 export const ButtonContainer = styled.div`
