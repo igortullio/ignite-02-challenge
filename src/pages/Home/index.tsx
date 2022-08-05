@@ -1,15 +1,51 @@
+import { useState } from 'react'
 import { Icon } from '../../components/Icon'
 import { Card } from '../../components/Card'
 import cupCoffee from '../../assets/images/cup_coffee.png'
 import { informationList } from '../../assets/objects/informations'
 import { cardList } from '../../assets/objects/cards'
-import { Filter } from './components/Filter'
+import { Filter, FilterType } from './components/Filter'
 
 import * as S from './styles'
 
-const typeList = ['tradicional', 'especial', 'com leite', 'alcoólico', 'gelado']
+const filters: FilterType[] = [
+  { name: 'tradicional', check: true },
+  { name: 'especial', check: true },
+  { name: 'com leite', check: true },
+  { name: 'alcoólico', check: true },
+  { name: 'gelado', check: true },
+]
 
 export function Home() {
+  const [filtersCheck, setFiltersCheck] = useState<FilterType[]>(filters)
+
+  const cardsToShow = cardList.filter((card) =>
+    card.types.some((type) =>
+      filtersCheck
+        .filter((filterCheck) => filterCheck.check)
+        .map((filterCheck) => filterCheck.name)
+        .includes(type),
+    ),
+  )
+
+  function onChangeAllFilter() {
+    setFiltersCheck((state) =>
+      state.map((filter) => {
+        filter.check = true
+        return filter
+      }),
+    )
+  }
+
+  function onChangeFilter(name: string, status: boolean) {
+    setFiltersCheck((state) =>
+      state.map((filter) => {
+        filter.check = filter.name === name
+        return filter
+      }),
+    )
+  }
+
   return (
     <S.Wrapper>
       <S.Information>
@@ -38,13 +74,25 @@ export function Home() {
         <S.MenuHeader>
           <S.MenuTitle>Nossos cafés</S.MenuTitle>
           <S.FilterContainer>
-            {typeList.map((type) => (
-              <Filter key={type} type={type} />
+            {filters.some((filter) => !filter.check) && (
+              <Filter
+                filter={{ name: 'todos', check: false }}
+                onCheck={onChangeAllFilter}
+              />
+            )}
+            {filters.map((filter) => (
+              <Filter
+                key={filter.name}
+                filter={filter}
+                onCheck={(status: boolean) =>
+                  onChangeFilter(filter.name, status)
+                }
+              />
             ))}
           </S.FilterContainer>
         </S.MenuHeader>
         <S.CoffeeList>
-          {cardList.map((coffee) => (
+          {cardsToShow.map((coffee) => (
             <Card key={coffee.name} {...coffee} />
           ))}
         </S.CoffeeList>
