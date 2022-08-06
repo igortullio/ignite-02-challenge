@@ -26,10 +26,12 @@ export function Header() {
         />
         <Link to="/checkout">
           <Button
+            fullHeight
             backgroundColor="yellowLight"
             hoverColor="yellow"
             icon={{ icon: <ShoppingCart weight="fill" />, color: 'yellowDark' }}
             quantity={items.length}
+            disabled={items.length < 1}
           />
         </Link>
       </S.ButtonContainer>

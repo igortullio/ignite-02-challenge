@@ -5,7 +5,8 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { CartContext } from '../../contexts/CartContext'
@@ -17,7 +18,12 @@ import * as S from './styles'
 import { PaymentOptionContainer } from './styles'
 
 export function Checkout() {
+  const navigate = useNavigate()
   const { items } = useContext(CartContext)
+
+  useEffect(() => {
+    if (items.length < 1) navigate('/')
+  }, [items, navigate])
 
   const totalPrice = items.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -95,34 +101,28 @@ export function Checkout() {
         <S.SummaryTitle>Cafés selecionados</S.SummaryTitle>
 
         <S.SummaryCard>
-          {items.length ? (
-            <>
-              <S.CardList>
-                {items.map((item) => (
-                  <Card key={item.name} {...item} />
-                ))}
-              </S.CardList>
-              <S.SummaryFooter>
-                <S.ValuesContainer>
-                  <S.ValuesItem>Total dos items</S.ValuesItem>
-                  <S.ValuesItem>{formatCurrency(totalPrice)}</S.ValuesItem>
-                </S.ValuesContainer>
-                <S.ValuesContainer>
-                  <S.ValuesItem>Entrega</S.ValuesItem>
-                  <S.ValuesItem>{formatCurrency(deliveryPrice)}</S.ValuesItem>
-                </S.ValuesContainer>
-                <S.ValuesContainer>
-                  <S.ValuesTotal>Total</S.ValuesTotal>
-                  <S.ValuesTotal>
-                    {formatCurrency(totalPrice + deliveryPrice)}
-                  </S.ValuesTotal>
-                </S.ValuesContainer>
-                <Button label="Confirmar pedido" fullWidth />
-              </S.SummaryFooter>
-            </>
-          ) : (
-            <S.SummaryFooter>Nenhum item no carrinho</S.SummaryFooter>
-          )}
+          <S.CardList>
+            {items.map((item) => (
+              <Card key={item.name} {...item} />
+            ))}
+          </S.CardList>
+          <S.SummaryFooter>
+            <S.ValuesContainer>
+              <S.ValuesItem>Total dos items</S.ValuesItem>
+              <S.ValuesItem>{formatCurrency(totalPrice)}</S.ValuesItem>
+            </S.ValuesContainer>
+            <S.ValuesContainer>
+              <S.ValuesItem>Entrega</S.ValuesItem>
+              <S.ValuesItem>{formatCurrency(deliveryPrice)}</S.ValuesItem>
+            </S.ValuesContainer>
+            <S.ValuesContainer>
+              <S.ValuesTotal>Total</S.ValuesTotal>
+              <S.ValuesTotal>
+                {formatCurrency(totalPrice + deliveryPrice)}
+              </S.ValuesTotal>
+            </S.ValuesContainer>
+            <Button label="Confirmar pedido" fullWidth />
+          </S.SummaryFooter>
         </S.SummaryCard>
       </S.Summary>
     </S.Wrapper>

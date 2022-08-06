@@ -53,6 +53,10 @@ export const Wrapper = styled.button<WrapperProps>`
     &:disabled {
       cursor: not-allowed;
       opacity: 0.5;
+
+      svg {
+        pointer-events: none;
+      }
     }
 
     ${fullWidth && modifiers.fullWidth()}
