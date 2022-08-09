@@ -1,35 +1,70 @@
-import {
-  Bank,
-  CreditCard,
-  CurrencyDollar,
-  MapPinLine,
-  Money,
-} from 'phosphor-react'
+import { Bank, CreditCard, CurrencyDollar, MapPinLine } from 'phosphor-react'
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../../components/Button'
-import { Input } from '../../components/Input'
-import { CartContext } from '../../contexts/CartContext'
+import { CartContext, PaymentOption } from '../../contexts/CartContext'
 import { formatCurrency } from '../../utils/currencyUtil'
 import { Card } from './components/Card'
-import { PaymentOption } from './components/PaymentOption'
+import { useForm } from 'react-hook-form'
+import * as zod from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 import * as S from './styles'
-import { PaymentOptionContainer } from './styles'
+
+const venueFormValidationSchema = zod.object({
+  document: zod.string().min(1, { message: 'Informe o CPF' }),
+  street: zod.string().min(1, { message: 'Informe a rua' }),
+  number: zod.string().min(1, { message: 'Informe o número' }),
+  complement: zod.string().optional(),
+  neighborhood: zod.string().min(1, { message: 'Informe o bairro' }),
+  city: zod.string().min(1, { message: 'Informe a cidade' }),
+  district: zod
+    .string()
+    .min(2, { message: 'Informe o estado' })
+    .max(2, { message: 'O estado precisa ter no máximo 2 caracteres' }),
+  payment: zod.string(),
+})
+
+type VenueFormData = zod.infer<typeof venueFormValidationSchema>
 
 export function Checkout() {
   const navigate = useNavigate()
-  const { items } = useContext(CartContext)
+  const { items, itemsValue, updateDelivery, updatePayment } =
+    useContext(CartContext)
+  const { register, handleSubmit, watch } = useForm<VenueFormData>({
+    resolver: zodResolver(venueFormValidationSchema),
+    defaultValues: {
+      document: '',
+      street: '',
+      number: '',
+      neighborhood: '',
+      city: '',
+      district: '',
+    },
+  })
 
   useEffect(() => {
     if (items.length < 1) navigate('/')
   }, [items, navigate])
 
-  const totalPrice = items.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0,
-  )
   const deliveryPrice = 3.5
+
+  const isButtonDisable =
+    !watch('document') ||
+    !watch('street') ||
+    !watch('number') ||
+    !watch('neighborhood') ||
+    !watch('city') ||
+    !watch('district') ||
+    watch('district').length !== 2 ||
+    !watch('payment')
+
+  function handleAddVenueInfo(data: VenueFormData) {
+    updateDelivery(data)
+    updatePayment(data.payment as PaymentOption)
+
+    navigate('/success')
+  }
 
   return (
     <S.Wrapper>
@@ -49,19 +84,54 @@ export function Checkout() {
           </S.VenueHeader>
           <S.VenueForm>
             <S.VenueFormLine templateColumns="200px">
-              <Input placeholder="CPF" />
+              <S.Input
+                id="document"
+                type="text"
+                placeholder="CPF"
+                {...register('document')}
+              />
             </S.VenueFormLine>
             <S.VenueFormLine templateColumns="1fr">
-              <Input placeholder="Rua" />
+              <S.Input
+                id="street"
+                type="text"
+                placeholder="Rua"
+                {...register('street')}
+              />
             </S.VenueFormLine>
             <S.VenueFormLine templateColumns="200px 1fr">
-              <Input placeholder="Número" />
-              <Input placeholder="Complemento" />
+              <S.Input
+                id="number"
+                type="text"
+                placeholder="Número"
+                {...register('number')}
+              />
+              <S.Input
+                id="complement"
+                type="text"
+                placeholder="Complemento"
+                {...register('complement')}
+              />
             </S.VenueFormLine>
             <S.VenueFormLine templateColumns="200px 1fr 60px">
-              <Input placeholder="Bairro" />
-              <Input placeholder="Cidade" />
-              <Input placeholder="UF" size={2} />
+              <S.Input
+                id="neighborhood"
+                type="text"
+                placeholder="Bairro"
+                {...register('neighborhood')}
+              />
+              <S.Input
+                id="city"
+                type="text"
+                placeholder="Cidade"
+                {...register('city')}
+              />
+              <S.Input
+                id="district"
+                type="text"
+                placeholder="UF"
+                {...register('district')}
+              />
             </S.VenueFormLine>
           </S.VenueForm>
         </S.VenueInformation>
@@ -77,23 +147,46 @@ export function Checkout() {
               </S.PaymentSubtitle>
             </S.PaymentHeaderInfo>
           </S.PaymentHeader>
-          <PaymentOptionContainer>
-            <PaymentOption
-              name="PaymentOption"
-              label="cartão de crédito"
-              icon={<CreditCard size={16} />}
-            />
-            <PaymentOption
-              name="PaymentOption"
-              label="cartão de débito"
-              icon={<Bank size={16} />}
-            />
-            <PaymentOption
-              name="PaymentOption"
-              label="dinheiro"
-              icon={<Money size={16} />}
-            />
-          </PaymentOptionContainer>
+          <S.PaymentOptionContainer>
+            <S.RadioContainer>
+              <S.Radio
+                id="cartão de crédito"
+                type="radio"
+                value="credit"
+                {...register('payment')}
+              />
+              <S.RadioLabel htmlFor={'cartão de crédito'}>
+                {<CreditCard size={16} />}
+                cartão de crédito
+              </S.RadioLabel>
+            </S.RadioContainer>
+
+            <S.RadioContainer>
+              <S.Radio
+                id="cartão de débito"
+                type="radio"
+                value="debit"
+                {...register('payment')}
+              />
+              <S.RadioLabel htmlFor={'cartão de débito'}>
+                {<Bank size={16} />}
+                cartão de débito
+              </S.RadioLabel>
+            </S.RadioContainer>
+
+            <S.RadioContainer>
+              <S.Radio
+                id="dinheiro"
+                type="radio"
+                value="cash"
+                {...register('payment')}
+              />
+              <S.RadioLabel htmlFor={'dinheiro'}>
+                {<Bank size={16} />}
+                dinheiro
+              </S.RadioLabel>
+            </S.RadioContainer>
+          </S.PaymentOptionContainer>
         </S.PaymentInformation>
       </S.CheckoutInformation>
 
@@ -109,7 +202,7 @@ export function Checkout() {
           <S.SummaryFooter>
             <S.ValuesContainer>
               <S.ValuesItem>Total dos items</S.ValuesItem>
-              <S.ValuesItem>{formatCurrency(totalPrice)}</S.ValuesItem>
+              <S.ValuesItem>{formatCurrency(itemsValue)}</S.ValuesItem>
             </S.ValuesContainer>
             <S.ValuesContainer>
               <S.ValuesItem>Entrega</S.ValuesItem>
@@ -118,10 +211,15 @@ export function Checkout() {
             <S.ValuesContainer>
               <S.ValuesTotal>Total</S.ValuesTotal>
               <S.ValuesTotal>
-                {formatCurrency(totalPrice + deliveryPrice)}
+                {formatCurrency(itemsValue + deliveryPrice)}
               </S.ValuesTotal>
             </S.ValuesContainer>
-            <Button label="Confirmar pedido" fullWidth />
+            <Button
+              label="Confirmar pedido"
+              fullWidth
+              disabled={isButtonDisable}
+              onClick={handleSubmit(handleAddVenueInfo)}
+            />
           </S.SummaryFooter>
         </S.SummaryCard>
       </S.Summary>

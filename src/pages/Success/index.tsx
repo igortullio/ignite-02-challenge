@@ -1,10 +1,21 @@
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
 import { Icon } from '../../components/Icon'
 import success from '../../assets/images/success.svg'
+import { useNavigate } from 'react-router-dom'
+import { useContext, useEffect } from 'react'
+import { CartContext } from '../../contexts/CartContext'
 
 import * as S from './styles'
 
 export function Success() {
+  const navigate = useNavigate()
+  const { items, delivery, payment } = useContext(CartContext)
+
+  useEffect(() => {
+    if (items.length < 1) navigate('/')
+    if (!delivery && !payment) navigate('/checkout')
+  }, [items, delivery, payment, navigate])
+
   return (
     <S.Wrapper>
       <S.InformationHeaderContainer>
