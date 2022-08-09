@@ -18,6 +18,7 @@ export interface DeliveryProps {
 }
 
 export type PaymentOption = 'cash' | 'credit' | 'debit'
+
 interface CartContextProps {
   items: ItemProps[]
   itemsValue: number

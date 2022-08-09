@@ -16,6 +16,21 @@ export function Success() {
     if (!delivery && !payment) navigate('/checkout')
   }, [items, delivery, payment, navigate])
 
+  const deliveryFormated = `Entrega em: ${delivery?.street} ${delivery?.complement} - ${delivery?.neighborhood} - ${delivery?.city}, ${delivery?.district}`
+
+  let paymentFormated = 'Pagamento na entrega - '
+  switch (payment) {
+    case 'cash':
+      paymentFormated += 'Dinheiro'
+      break
+    case 'credit':
+      paymentFormated += 'Cartão de crédito'
+      break
+    case 'debit':
+      paymentFormated += 'Cartão de débito'
+      break
+  }
+
   return (
     <S.Wrapper>
       <S.InformationHeaderContainer>
@@ -30,21 +45,21 @@ export function Success() {
             <S.InformationItem>
               <Icon
                 icon={<MapPin size={16} weight="fill" />}
-                text="Entrega em Rua João Daniel Martinelli, 102; Farrapos - Porto Alegre, RS"
+                text={deliveryFormated}
                 color="purple"
               />
             </S.InformationItem>
             <S.InformationItem>
               <Icon
                 icon={<Timer size={16} weight="fill" />}
-                text="Previsão de entrega; 20min - 30min"
+                text="Previsão de entrega: 20min - 30min"
                 color="yellow"
               />
             </S.InformationItem>
             <S.InformationItem>
               <Icon
                 icon={<CurrencyDollar size={16} weight="fill" />}
-                text="Pagamento na entrega; Cartão de Crédito"
+                text={paymentFormated}
                 color="yellowDark"
               />
             </S.InformationItem>
