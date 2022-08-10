@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useState } from 'react'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 export interface ItemProps {
   image: string
@@ -38,7 +39,10 @@ interface CartContextProviderProps {
 }
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [items, setItems] = useState<ItemProps[]>([])
+  const [items, setItems] = useLocalStorage<ItemProps[]>(
+    'COFFEE_DELIVERY__ITEMS',
+    [],
+  )
   const [delivery, setDelivery] = useState<DeliveryProps | null>()
   const [payment, setPayment] = useState<PaymentOption | null>(null)
 
